@@ -48,9 +48,9 @@ async function bootstrap() {
 
   // a sneaky way to enable db migration from in app
   
-  const config = new ConfigService();
-  const migDb = new DB(logger, config);
-  migDb.databaseOp();
+  // const config = new ConfigService();
+  // const migDb = new DB(logger, config);
+  // migDb.databaseOp();
 
   // Use logger middleware for request logging
   app.use(new LoggerMiddleware().use);

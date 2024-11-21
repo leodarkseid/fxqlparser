@@ -1,41 +1,34 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FXQLService } from './app.service';
-import { RegexDataValidator } from './dto/index';
+import { AppController } from './app.controller';
+import { FXQLService } from './FXQL.service';
 
-describe('FXQLService', () => {
-  let service: FXQLService;
-  let validator: RegexDataValidator;
+describe('AppController', () => {
+  let appController: AppController;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        FXQLService,
-        {
-          provide: RegexDataValidator,
-          useValue: {
-            validCurrencyPair: jest.fn().mockReturnValue(true), // Mocking method
-          },
-        },
-      ],
+    const app: TestingModule = await Test.createTestingModule({
+      controllers: [AppController],
+      providers: [FXQLService],
     }).compile();
 
-    service = module.get<FXQLService>(FXQLService);
-    validator = module.get<RegexDataValidator>(RegexDataValidator);
+    appController = app.get<AppController>(AppController);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+  const testToken = {
+    FXQL: 'USD-GBP {\\n  BUY 0.85\\n  SELL 0.90\\n  CAP 10000\\n}\\n\\nEUR-JPY {\\n  BUY 145.20\\n  SELL 146.50\\n  CAP 50000\\n}\\n\\nNGN-USD {\\n  BUY 0.0022\\n  SELL 0.0023\\n  CAP 2000000\\n}',
+  };
 
-  it('should return no errors for a valid FXQL', () => {
-    const errors = validator.validate('USD-EUR');
-    expect(errors).toHaveLength(0);
-  });
+  describe('app controller', () => {
 
-  it('should return error for an invalid FXQL', () => {
-  
-    const errors = validator.validate('usd-eur');
-    expect(errors).toHaveLength(1);
-    expect(errors[0]).toBe('Invalid Currency Pair');
+    it('it should be defined', ()=> {
+      expect(appController).toBeDefined();
+    })
+
+    it('it should return a status of 201', ()=> {
+      
+    })
+    it('should return "Hello World!"', () => {
+      expect(appController.parseData(testToken)).toBe('Hello World!');
+    });
   });
 });

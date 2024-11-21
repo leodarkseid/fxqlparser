@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Redirect } from '@nestjs/common';
-import { FXQLService } from './app.service';
+import { FXQLService } from './FXQL.service';
 import { FXQLDto, FXQLResponseDto } from './dto';
 import { Throttle } from '@nestjs/throttler';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';

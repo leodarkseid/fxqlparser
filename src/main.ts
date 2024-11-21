@@ -8,32 +8,33 @@ import helmet from 'helmet';
 import { PrismaClientExceptionFilter } from './prisma-client-exception/prisma-client-exception.filter';
 import { SWAGGER_CONFIG } from './config/SWAGGER_CONFIG';
 import { CORS_CONFIG } from './config/CORS_CONFIG';
-
+import { DB } from './db2';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * Bootstraps the NestJS application by setting up middleware, configuration, and global components.
- * 
+ *
  * The function initializes the application with the following features:
  * 1. **Logger Middleware**: Logs incoming requests for monitoring and debugging purposes.
  * 2. **CORS Configuration**: Enables Cross-Origin Resource Sharing (CORS) with settings from `CORS_CONFIG`.
  * 3. **Helmet**: Adds security headers to the application for enhanced security.
- * 4. **Swagger API Documentation**: Generates and sets up Swagger UI for API documentation, 
+ * 4. **Swagger API Documentation**: Generates and sets up Swagger UI for API documentation,
  *    accessible at the `/api` endpoint. Includes a JSON document URL at `/v1/api.json`.
- * 5. **Exception Filters**: Adds a global filter (`PrismaClientExceptionFilter`) for handling 
+ * 5. **Exception Filters**: Adds a global filter (`PrismaClientExceptionFilter`) for handling
  *    exceptions specific to Prisma Client.
  * 6. **Validation Pipe**: Globally enables request validation using the `ValidationPipe` to enforce
  *    DTO validation and automatic data transformation.
  * 7. **Application Port**: Starts the application on a port specified by the `PORT` environment variable,
  *    defaulting to `3001` if the variable is not set.
- * 
+ *
  * @async
  * @function bootstrap
  * @returns {Promise<void>} Resolves when the application has successfully started.
- * 
+ *
  * @example
  * // Start the application by calling the bootstrap function
  * bootstrap();
- * 
+ *
  * @see {@link AppModule} - The root module of the application.
  * @see {@link LoggerMiddleware} - Middleware for logging incoming requests.
  * @see {@link ValidationPipe} - A global pipe for request validation.
@@ -44,6 +45,12 @@ import { CORS_CONFIG } from './config/CORS_CONFIG';
 async function bootstrap() {
   const logger = new LoggerService();
   const app = await NestFactory.create(AppModule);
+
+  // a sneaky way to enable db migration from in app
+  
+  const config = new ConfigService();
+  const migDb = new DB(logger, config);
+  migDb.databaseOp();
 
   // Use logger middleware for request logging
   app.use(new LoggerMiddleware().use);

@@ -73,7 +73,7 @@ export class FXQLService {
       }
     } catch (error) {
       // If an error occurs, throw an HttpException
-      throw new HttpException(`Edge case error`, HttpStatus.I_AM_A_TEAPOT, {
+      throw new HttpException(`Edge case error, ${error.toString()}`, HttpStatus.I_AM_A_TEAPOT, {
         cause: new Error(`The cause of this is unknown`),
       });
     }

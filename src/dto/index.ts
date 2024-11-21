@@ -124,7 +124,7 @@ export class RegexDataValidator implements ValidatorConstraintInterface {
 
     // Throw error if there are validation issues
     if (errors.size > 0) {
-      throw new BadRequestException(Array.from(errors));
+      throw new BadRequestException({message:Array.from(errors), code: "FXQL-400"});
     }
     return true;
   }

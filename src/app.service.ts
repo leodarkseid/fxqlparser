@@ -63,7 +63,7 @@ export class FXQLService {
 
         return {
           message: "FXQL Statement Parsed Successfully.",
-          code: "FXQL-200",
+          code: "FXQL-201",
           data : newList.map((list) => {
           return {
             EntryId: list.id,

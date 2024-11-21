@@ -2,11 +2,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 
 export const CORS_CONFIG: CorsOptions = {
   origin: [
-    'https://pactocoin.com',
-    'http://marketplace.pactocoin.com',
-    'http://marketplace.pactocoin.com/marketplace',
-    /^https:\/\/(.+\.)?pactocoin\.com$/,
-    'http://localhost:42332',
+    'https://fxqlparser.onrender.com'
   ],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,

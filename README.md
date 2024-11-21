@@ -141,3 +141,6 @@ Copy code
 
 ## License
 This project is licensed under the MIT License.
+
+
+CORS

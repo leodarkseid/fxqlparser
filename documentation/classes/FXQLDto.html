@@ -1,0 +1,407 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>fxql documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">fxql documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >FXQLDto</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/dto/index.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                <a href="#FXQL" >FXQL</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="FXQL"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
+                        <span ><b>FXQL</b></span>
+                        <a href="#FXQL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @IsString()<br />@IsRegexData({message: &#x27;Invalid data format or numerical values. Ensure it matches: [CURRENCY-CURRENCY] { BUY X SELL Y CAP Z }&#x27;})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/dto/index.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BadRequestException } from &#x27;@nestjs/common&#x27;;
+import {
+  IsString,
+  registerDecorator,
+  ValidationOptions,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from &#x27;class-validator&#x27;;
+
+@ValidatorConstraint({ async: false })
+export class RegexDataValidator implements ValidatorConstraintInterface {
+ 
+  private regexData &#x3D;
+    /([A-Z0-9]{0,}-[A-Z0-9]{0,})\s*{\s*BUY\s+([^\s]+)\s*SELL\s+([^\s]+)\s*CAP\s+([^\s]+)\s*}/gim;
+  validCurrencyPair(data: string) {
+    const currencyPairRegex &#x3D; /^[A-Z]{3}-[A-Z]{3}$/;
+    const validity &#x3D; currencyPairRegex.test(data);
+    return validity;
+  }
+
+  validate(value: string): boolean {
+    // Replace escaped newlines for proper parsing
+    value &#x3D; value.replace(/\\n/g, &#x27;\n&#x27;);
+    const lines &#x3D; value.split(&#x27;\n&#x27;);
+    let match: RegExpExecArray | null;
+    const errors &#x3D; new Set();
+    while ((match &#x3D; this.regexData.exec(value)) !&#x3D;&#x3D; null) {
+      // Extract currency pair and values
+      const CP &#x3D; match[1];
+      const BUY &#x3D; match[2];
+      const SELL &#x3D; match[3];
+      const CAP &#x3D; match[4];
+      const matchStartPos &#x3D; match.index;
+      const lineNumber &#x3D; value.substring(0, matchStartPos).split(&#x27;\n&#x27;).length;
+       const charPositionInLine &#x3D;
+         matchStartPos - value.lastIndexOf(&#x27;\n&#x27;, matchStartPos) - 1;
+       const cpStartPos &#x3D; match.index;
+       const cpEndPos &#x3D; cpStartPos + CP.length;
+
+       const buyStartPos &#x3D;
+         match.index + match[1].length + match[0].indexOf(&#x27;BUY&#x27;) + 3; // 3 for the length of &quot;BUY&quot;
+       const buyEndPos &#x3D; buyStartPos + BUY.length;
+
+       const sellStartPos &#x3D; buyEndPos + match[0].indexOf(&#x27;SELL&#x27;) + 4; // 4 for the length of &quot;SELL&quot;
+       const sellEndPos &#x3D; sellStartPos + SELL.length;
+
+       const capStartPos &#x3D; sellEndPos + match[0].indexOf(&#x27;CAP&#x27;) + 3; // 3 for the length of &quot;CAP&quot;
+       const capEndPos &#x3D; capStartPos + CAP.length;
+      if (!this.validCurrencyPair(CP)) {
+        errors.add(
+          &#x60;Currency Pair -${CP} is not Valid at Line ${lineNumber} Character Position - ${cpStartPos}-${cpEndPos}&#x60;,
+        );
+      }
+
+      if (!this.isNumber(BUY)) {
+        errors.add(
+          &#x60;BUY Value- ${BUY} is not valid at Line: ${lineNumber} Character Position - ${buyStartPos}-${buyEndPos}&#x60;,
+        );
+      }
+      if (!this.isNumber(SELL)) {
+        errors.add(
+          &#x60;SELL Value- ${SELL} is not valid at Line: ${lineNumber} Character Position - ${sellStartPos}-${sellEndPos}&#x60;,
+        );
+      }
+      if (!this.isNumber(CAP) || Number(CAP) % 1 !&#x3D;&#x3D; 0) {
+        errors.add(
+          &#x60;CAP Value- ${CAP} is not valid at Line: ${lineNumber} Character Position - ${capStartPos}-${capEndPos}&#x60;,
+        );
+      }
+    }
+    if (errors.size &gt; 0) {
+      throw new BadRequestException(Array.from(errors));
+    }
+    return true;
+  }
+
+  private isNumber(value: string): boolean {
+    const number &#x3D; parseFloat(value);
+    return !isNaN(number) &amp;&amp; isFinite(number) &amp;&amp;  number &gt; 0;
+  }
+
+  private isInteger(value: string): boolean {
+    return Number.isInteger(Number(value));
+  }
+
+  defaultMessage(): string {
+    return &#x27;Data format is invalid. Ensure it matches the required pattern and numerical values are valid.&#x27;;
+  }
+}
+
+export function IsRegexData(validationOptions?: ValidationOptions) {
+  return function (object: Object, propertyName: string) {
+    registerDecorator({
+      target: object.constructor,
+      propertyName: propertyName,
+      options: validationOptions,
+      constraints: [],
+      validator: RegexDataValidator,
+    });
+  };
+}
+
+export class FXQLDto {
+  @IsString()
+  @IsRegexData({
+    message:
+      &#x27;Invalid data format or numerical values. Ensure it matches: [CURRENCY-CURRENCY] { BUY X SELL Y CAP Z }&#x27;,
+  })
+  FXQL: string;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'FXQLDto.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

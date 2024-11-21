@@ -85,7 +85,7 @@ async function bootstrap() {
   );
 
   // Start the application on the specified port or default to 3001
-  await app.listen(process.env.PORT ?? 3001);
+  await app.listen(process.env.PORT ?? 3000);
   logger.log(`Application started`);
 }
 bootstrap();

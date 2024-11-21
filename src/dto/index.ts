@@ -176,7 +176,7 @@ export class FXQLDto {
  * 
  * This DTO is used to represent the response format after the FXQL data is processed and stored in the database.
  */
-export class FXQLResponseDto {
+export class FXQLResponseData {
   @ApiProperty({
     description: 'The unique identifier for the FXQL record',
     type: String,
@@ -218,5 +218,20 @@ export class FXQLResponseDto {
     example: 42424242,
   })
   CapAmount: number;
+}
+
+export class FXQLResponseDto {
+  @ApiProperty({
+    description: 'message',
+    example: 'FXQL Statement Parsed Successfully.',
+  })
+  message: string;
+  @ApiProperty({
+    description: 'code',
+    example: 'FXQL-200',
+  })
+  code: string;
+  @ApiProperty({ description: 'FXQLResponseData', type: [FXQLResponseData] })
+  data: FXQLResponseData[];
 }
 

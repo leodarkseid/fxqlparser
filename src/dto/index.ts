@@ -10,11 +10,11 @@ import {
 
 /**
  * Validator constraint for validating FXQL data format.
- * 
+ *
  * This class is used to validate that the FXQL data follows the correct format, including:
  * - A valid currency pair (e.g., "USD-EUR")
  * - Valid numerical values for BUY, SELL, and CAP.
- * 
+ *
  * It checks the format and value constraints for each part of the FXQL data and throws a BadRequestException if there are any issues.
  */
 @ValidatorConstraint({ async: false })
@@ -74,6 +74,14 @@ export class RegexDataValidator implements ValidatorConstraintInterface {
     let match: RegExpExecArray | null;
     const errors = new Set();
 
+    // Count matches to ensure the number of currency pairs does not exceed 1000
+    const totalMatches = (value.match(this.regexData) || []).length;
+    if (totalMatches > 1000) {
+      throw new BadRequestException(
+        `The number of currency pairs exceeds the limit of 1000. Found: ${totalMatches}`,
+      );
+    }
+
     // this runs a loop on the Regex extracted data
     while ((match = this.regexData.exec(value)) !== null) {
       // Extract currency pair and values
@@ -124,7 +132,10 @@ export class RegexDataValidator implements ValidatorConstraintInterface {
 
     // Throw error if there are validation issues
     if (errors.size > 0) {
-      throw new BadRequestException({message:Array.from(errors), code: "FXQL-400"});
+      throw new BadRequestException({
+        message: Array.from(errors),
+        code: 'FXQL-400',
+      });
     }
     return true;
   }
@@ -170,10 +181,9 @@ export class FXQLDto {
   FXQL: string;
 }
 
-
 /**
  * DTO (Data Transfer Object) for FXQL response data.
- * 
+ *
  * This DTO is used to represent the response format after the FXQL data is processed and stored in the database.
  */
 export class FXQLResponseData {
@@ -234,4 +244,3 @@ export class FXQLResponseDto {
   @ApiProperty({ description: 'FXQLResponseData', type: [FXQLResponseData] })
   data: FXQLResponseData[];
 }
-

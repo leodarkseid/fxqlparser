@@ -57,31 +57,34 @@ export class FXQLService {
         data: newList,
       });
 
-
       // If the insert was successful, return the formatted result
       if (newList.length == dbOperation.count) {
-
         return {
-          message: "FXQL Statement Parsed Successfully.",
-          code: "FXQL-201",
-          data : newList.map((list) => {
-          return {
-            EntryId: list.id,
-            SourceCurrency: list.sourceCurrency,
-            DestinationCurrency: list.destinationCurrency,
-            SellPrice: list.sellPrice,
-            BuyPrice: list.buyPrice,
-            CapAmount: list.capAmount,
-          };
-        })};
+          message: 'FXQL Statement Parsed Successfully.',
+          code: 'FXQL-201',
+          data: newList.map((list) => {
+            return {
+              EntryId: list.id,
+              SourceCurrency: list.sourceCurrency,
+              DestinationCurrency: list.destinationCurrency,
+              SellPrice: list.sellPrice,
+              BuyPrice: list.buyPrice,
+              CapAmount: list.capAmount,
+            };
+          }),
+        };
       }
     } catch (error) {
-      throw new HttpException({
-      message: `Edge case error: ${error.message || error.toString()}`,
-      code: 'FXQL-418',
-    }, HttpStatus.I_AM_A_TEAPOT, {
-        cause: new Error(`The cause of this is unknown`),
-      });
+      throw new HttpException(
+        {
+          message: `Edge case error: ${error.message || error.toString()}`,
+          code: 'FXQL-418',
+        },
+        HttpStatus.I_AM_A_TEAPOT,
+        {
+          cause: new Error(`The cause of this is unknown`),
+        },
+      );
     }
   }
 }

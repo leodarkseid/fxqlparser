@@ -124,7 +124,7 @@ export class AppController {
     description: 'Too many requests, rate limit exceeded', // Response for rate-limiting
   })
   @Post('parse')
-  async parseData(@Body() data: FXQLDto) {
+  parseData(@Body() data: FXQLDto): Promise<FXQLResponseDto> {
     return this.app.processData(data.FXQL);
   }
 }
